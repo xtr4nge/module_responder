@@ -1,6 +1,6 @@
 <?
 $mod_name="responder";
-$mod_version="1.0";
+$mod_version="1.1";
 $mod_logs="/usr/share/FruityWifi/logs/responder.log"; 
 $mod_logs_history="/usr/share/FruityWifi/www/modules/responder/includes/logs/";
 $mod_path="/usr/share/FruityWifi/www/modules/responder";
@@ -18,4 +18,5 @@ $bin_cp = "/bin/cp";
 $bin_chmod = "/bin/chmod";
 $bin_sed = "/bin/sed";
 $bin_rm = "/bin/rm";
+$bin_route = "/sbin/route";
 ?>

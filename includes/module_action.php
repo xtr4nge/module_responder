@@ -65,9 +65,17 @@ if($service != "") {
         $filename = "$mod_path/includes/templates/".$ss_mode;
         $data = open_file($filename);
         
-        $exec = "$bin_grep -q -d wlan0 -W byline $options -t $data >> $mod_logs &"; 
+        //$exec = "$bin_grep -q -d wlan0 -W byline $options -t $data >> $mod_logs &"; 
         
-        $exec = "cd Responder-master; ./Responder.py -i 10.0.0.1 -b On -r On -I wlan2 > /dev/null 2 &";
+        // CHECK ROUTE
+        $exec = "route|grep default";
+        $ifRouteOn = exec($exec);
+        if ($ifRouteOn == "") {
+            $exec = "/sbin/route add default gw 10.0.0.1";
+            exec("$bin_danger \"$exec\"" );
+        }
+        
+        $exec = "cd Responder-master; ./Responder.py -i 10.0.0.1 -b On -r On -I $iface_wifi > /dev/null 2 &";
         exec("$bin_danger \"$exec\"" );
         
     } else if($action == "stop") {
