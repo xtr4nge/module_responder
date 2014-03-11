@@ -68,10 +68,10 @@ if($service != "") {
         //$exec = "$bin_grep -q -d wlan0 -W byline $options -t $data >> $mod_logs &"; 
         
         // CHECK ROUTE
-        $exec = "route|grep default";
+        $exec = "$bin_route|grep default";
         $ifRouteOn = exec($exec);
         if ($ifRouteOn == "") {
-            $exec = "/sbin/route add default gw 10.0.0.1";
+            $exec = "$bin_route add default gw 10.0.0.1";
             exec("$bin_danger \"$exec\"" );
         }
         
