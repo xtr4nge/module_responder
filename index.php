@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013  xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ $(function() {
 
 include "_info_.php";
 include "../../config/config.php";
+include "../../login_check.php";
 include "../../functions.php";
 
 // Checking POST & GET variables...
@@ -145,7 +146,7 @@ Loading, please wait...
             <input type="submit" value="save">
             <br><br>
             
-            <div class="module" style="background-color:#000; border:1px dashed;">
+            <div class=" module-options" style="b-ackground-color:#000; b-order:1px dashed;">
             <table>
                 <!-- // OPTION SQL --> 
                 <tr>
@@ -192,7 +193,7 @@ Loading, please wait...
 
         <!-- HISTORY -->
 
-        <div id="result-3">
+        <div id="result-3" class="history">
             <input type="submit" value="refresh">
             <br><br>
             
