@@ -1,6 +1,8 @@
 #!/bin/bash
 
 echo "installing Responder..."
+apt-get -y install python-openssl
+
 wget https://github.com/SpiderLabs/Responder/archive/master.zip -O Responder-master.zip
 unzip Responder-master.zip
 
