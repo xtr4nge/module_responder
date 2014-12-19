@@ -1,14 +1,14 @@
 <?
 $mod_name="responder";
-$mod_version="1.3";
-$mod_logs="/usr/share/FruityWifi/logs/responder.log"; 
-$mod_logs_history="/usr/share/FruityWifi/www/modules/responder/includes/logs/";
-$mod_path="/usr/share/FruityWifi/www/modules/responder";
+$mod_version="1.4";
+$mod_path="/usr/share/fruitywifi/www/modules/$mod_name";
+$mod_logs="$log_path/$mod_name.log"; 
+$mod_logs_history="$mod_path/includes/logs/";
 $mod_panel="show";
 $mod_isup="ps auxww | grep Responder.py | grep -v -e 'grep'";
 $mod_alias="Responder";
 # EXEC
-$bin_danger = "/usr/share/FruityWifi/bin/danger";
+$bin_danger = "/usr/share/fruitywifi/bin/danger";
 $bin_sudo = "/usr/bin/sudo";
 $bin_sh = "/bin/sh";
 $bin_echo = "/bin/echo";

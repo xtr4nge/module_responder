@@ -1,7 +1,8 @@
 <?
 
-include "../_info_.php";
+//include "../login_check.php";
 include "../../../config/config.php";
+include "../_info_.php";
 include "../../../functions.php";
 
 include "options_config.php";
@@ -34,10 +35,12 @@ if ($type == "opt_responder") {
     for ($i=0; $i< count($tmp); $i++) {
         
         $exec = "/bin/sed -i 's/opt_responder\\[\\\"".$tmp[$i]."\\\"\\]\\[0\\].*/opt_responder\\[\\\"".$tmp[$i]."\\\"\\]\\[0\\] = 0;/g' options_config.php";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
+        $output = exec_fruitywifi($exec);
         
         $exec = "/bin/sed -i 's/^".$tmp[$i].".*/".$tmp[$i]." = Off/g' Responder-master/Responder.conf";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
+        $output = exec_fruitywifi($exec);
         
     }
 
@@ -45,10 +48,12 @@ if ($type == "opt_responder") {
     for ($i=0; $i< count($tmp); $i++) {
         
         $exec = "/bin/sed -i 's/opt_responder\\[\\\"".$tmp[$i]."\\\"\\]\\[0\\].*/opt_responder\\[\\\"".$tmp[$i]."\\\"\\]\\[0\\] = 1;/g' options_config.php";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
+        $output = exec_fruitywifi($exec);
         
         $exec = "/bin/sed -i 's/^".$tmp[$i].".*/".$tmp[$i]." = On/g' Responder-master/Responder.conf";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
+        exec_fruitywifi($exec);
         
     }
 
