@@ -149,34 +149,17 @@ Loading, please wait...
             
             <div class=" module-options" style="b-ackground-color:#000; b-order:1px dashed;">
             <table>
-                <!-- // OPTION SQL --> 
-                <tr>
-                    <? $opt = "SQL"; ?>
-                    <td><input type="checkbox" name="options[]" value="<?=$opt?>" <? if ($opt_responder[$opt][0] == "1") echo "checked" ?> ></td>
-                    <td><?=$opt?></td>
-                    <td></td>
-                </tr>
-                <!-- // OPTION SMB --> 
-                <tr>
-                    <? $opt = "SMB"; ?>
-                    <td><input type="checkbox" name="options[]" value="<?=$opt?>" <? if ($opt_responder[$opt][0] == "1") echo "checked" ?> ></td>
-                    <td><?=$opt?></td>
-                    <td nowrap></td>
-                </tr>
-                <!-- // OPTION FTP --> 
-                <tr>
-                    <? $opt = "FTP"; ?>
-                    <td><input type="checkbox" name="options[]" value="<?=$opt?>" <? if ($opt_responder[$opt][0] == "1") echo "checked" ?> ></td>
-                    <td style="padding-right:10px"><?=$opt?></td>
-                    <td nowrap></td>
-                </tr>
-                <!-- // OPTION LDAP --> 
-                <tr>
-                    <? $opt = "LDAP"; ?>
-                    <td><input type="checkbox" name="options[]" value="<?=$opt?>" <? if ($opt_responder[$opt][0] == "1") echo "checked" ?> ></td>
-                    <td style="padding-right:10px"><?=$opt?></td>
-                    <td nowrap></td>
-                </tr>
+				<?php
+					$tmp = array_keys($opt_responder);
+					for ($i=0; $i< count($opt_responder); $i++)
+					{ ?>
+						<tr>
+							<td><input type="checkbox" name="options[]" value="<?=$tmp[$i]?>" <? if ($opt_responder[$tmp[$i]][0] == "1") echo "checked" ?> ></td>
+							<td><?=$tmp[$i]?></td>
+							<td></td>
+						</tr>
+			<?php   } ?>
+                
             </table>
             </div>
 
