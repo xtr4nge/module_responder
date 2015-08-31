@@ -78,7 +78,7 @@ if($service != "") {
             exec_fruitywifi($exec);
         }
         
-        $exec = "cd Responder-master; ./Responder.py -i $io_in_ip -b On -r On -I $io_action > /dev/null 2 &";
+        $exec = "cd Responder-master; ./Responder.py -b On -r On -I $io_action > /dev/null 2 &";
         //exec("$bin_danger \"$exec\"" ); //DEPRECATED
         exec_fruitywifi($exec);
         
