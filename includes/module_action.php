@@ -84,7 +84,7 @@ if($service != "") {
         
     } else if($action == "stop") {
         // STOP MODULE
-        $exec = "$bin_killall Responder.py";
+        $exec = "pgrep -f Responder.py | xargs kill -9";
         //exec("$bin_danger \"$exec\"" ); //DEPRECATED
         exec_fruitywifi($exec);
         
