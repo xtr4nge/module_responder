@@ -38,7 +38,7 @@ if ($type == "opt_responder") {
         //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
         $output = exec_fruitywifi($exec);
         
-        $exec = "/bin/sed -i 's/^".$tmp[$i].".*/".$tmp[$i]." = Off/g' Responder-master/Responder.conf";
+        $exec = "/bin/sed -i 's/^".$tmp[$i]." .*/".$tmp[$i]." = Off/g' Responder-master/Responder.conf";
         //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
         $output = exec_fruitywifi($exec);
         
@@ -51,7 +51,7 @@ if ($type == "opt_responder") {
         //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
         $output = exec_fruitywifi($exec);
         
-        $exec = "/bin/sed -i 's/^".$tmp[$i].".*/".$tmp[$i]." = On/g' Responder-master/Responder.conf";
+        $exec = "/bin/sed -i 's/^".$tmp[$i]." .*/".$tmp[$i]." = On/g' Responder-master/Responder.conf";
         //exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output); //DEPRECATED
         exec_fruitywifi($exec);
         
