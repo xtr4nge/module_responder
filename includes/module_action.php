@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013 xtr4nge [_AT_] gmail.com
+	Copyright (C) 2020 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 */ 
 ?>
 <?
-//include "../login_check.php";
+include "../../../login_check.php";
 include "../../../config/config.php";
 include "../_info_.php";
 include "../../../functions.php";
@@ -45,11 +45,9 @@ if($service != "") {
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
             exec_fruitywifi($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
-            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
             exec_fruitywifi($exec);
         }
     
@@ -60,42 +58,33 @@ if($service != "") {
                 $options .= " -" . $tmp[$i] . " " . $mode_ngrep[$tmp[$i]][2];
             }
         }
-    
-        //$exec = "/usr/bin/ngrep -q -d wlan0 -W byline -t $mode $options >> $mod_logs &";
-        //$exec = "/usr/bin/ngrep -q -d wlan0 -W byline -t 'Cookie' 'tcp and port 80' >> $mod_logs &";
-        
+            
         $filename = "$mod_path/includes/templates/".$ss_mode;
         $data = open_file($filename);
         
-        //$exec = "$bin_grep -q -d wlan0 -W byline $options -t $data >> $mod_logs &"; 
         
         // CHECK ROUTE
         $exec = "$bin_route|grep default";
         $ifRouteOn = exec($exec);
         if ($ifRouteOn == "") {
             $exec = "$bin_route add default gw $io_in_ip";
-            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
             exec_fruitywifi($exec);
         }
         
-        $exec = "cd Responder-master; ./Responder.py -b On -r On -I $io_action > /dev/null 2 &";
-        //exec("$bin_danger \"$exec\"" ); //DEPRECATED
+        $exec = "cd Responder-master; ./Responder.py -w -r -f -P -I $io_action > /dev/null 2 &";
         exec_fruitywifi($exec);
         
     } else if($action == "stop") {
         // STOP MODULE
         $exec = "pgrep -f Responder.py | xargs kill -9";
-        //exec("$bin_danger \"$exec\"" ); //DEPRECATED
         exec_fruitywifi($exec);
         
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
             exec_fruitywifi($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
-            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
             exec_fruitywifi($exec);
         }
 
@@ -103,14 +92,12 @@ if($service != "") {
 
 }
 
-if ($install == "install_responder") {
+if ($install == "install_$mod_name") {
 
     $exec = "chmod 755 install.sh";
-    //exec("$bin_danger \"$exec\"" ); //DEPRECATED
     exec_fruitywifi($exec);
 
     $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
-    //exec("$bin_danger \"$exec\"" ); //DEPRECATED
     exec_fruitywifi($exec);
 
     header('Location: ../../install.php?module=responder');
@@ -122,7 +109,5 @@ if ($page == "status") {
 } else {
     header('Location: ../../action.php?page=responder');
 }
-
-//header('Location: ../../action.php?page=ngrep');
 
 ?>

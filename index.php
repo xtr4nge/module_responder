@@ -1,6 +1,6 @@
 <? 
 /*
-	Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+	Copyright (C) 2013-2020 xtr4nge [_AT_] gmail.com
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>FruityWifi</title>
+<title>FruityWifi : Responder</title>
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/jquery-ui.css" />
@@ -51,7 +51,7 @@ include "../../functions.php";
 
 // Checking POST & GET variables...
 if ($regex == 1) {
-	regex_standard($_POST["newdata"], "msg.php", $regex_extra);
+    regex_standard($_POST["newdata"], "msg.php", $regex_extra);
     regex_standard($_GET["logfile"], "msg.php", $regex_extra);
     regex_standard($_GET["action"], "msg.php", $regex_extra);
     regex_standard($_POST["service"], "msg.php", $regex_extra);
@@ -66,7 +66,6 @@ $service = $_POST["service"];
 // DELETE LOG
 if ($logfile != "" and $action == "delete") {
     $exec = "$bin_rm ".$mod_logs_history.$logfile.".log";
-    //exec("$bin_danger \"$exec\"", $dump); //DEPRECATED
     exec_fruitywifi($exec);
 }
 
@@ -74,24 +73,24 @@ include "includes/options_config.php";
 
 ?>
 
-<div class="rounded-top" align="left"> &nbsp; <b>Responder</b> </div>
+<div class="rounded-top" align="left"> &nbsp; <b><?=$mod_alias?></b> </div>
 <div class="rounded-bottom">
 
     &nbsp;&nbsp;version <?=$mod_version?><br>
     <? 
-    if (file_exists("includes/Responder-master/Responder.py")) { 
-        echo "Responder <font style='color:lime'>installed</font><br>";
+    if (file_exists($bin_responder)) { 
+        echo "&nbsp; $mod_alias <font style='color:lime'>installed</font><br>";
     } else {
-        echo "Responder <a href='includes/module_action.php?install=install_responder' style='color:red'>install</a><br>";
+        echo "&nbsp; $mod_alias <a href='includes/module_action.php?install=install_$mod_name' style='color:red'>install</a><br>";
     } 
     ?>
     
     <?
-    $ismoduleup = exec("ps auxww | grep Responder.py | grep -v -e 'grep'");
+    $ismoduleup = exec($mod_isup);
     if ($ismoduleup != "") {
-        echo "Responder  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=responder&action=stop&page=module\"><b>stop</b></a>";
+        echo "&nbsp; $mod_alias  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='includes/module_action.php?service=responder&action=stop&page=module'><b>stop</b></a>";
     } else { 
-        echo "Responder  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=responder&action=start&page=module\"><b>start</b></a>"; 
+        echo "&nbsp; $mod_alias  <font color='red'><b>disabled</b></font>. | <a href='includes/module_action.php?service=responder&action=start&page=module'><b>start</b></a>"; 
     }
     ?>
 
@@ -127,12 +126,7 @@ Loading, please wait...
                     $filename = $mod_logs;
                 }
             
-                $data = open_file($filename);
-                
-                // REVERSE
-                //$data_array = explode("\n", $data);
-                //$data = implode("\n",array_reverse($data_array));
-                
+                $data = open_file($filename);                
             ?>
             <textarea id="output" class="module-content" style="font-family: courier;"><?=htmlspecialchars($data)?></textarea>
             <input type="hidden" name="type" value="logs">

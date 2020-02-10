@@ -41,7 +41,15 @@ $opt_responder["DNS"][1] = 10;
 $opt_responder["DNS"][2] = "";
 
 $opt_responder["LDAP"][0] = 1;
-$opt_responder["LDAP"][1] = 11;
+$opt_responder["LDAP"][1] = 12;
 $opt_responder["LDAP"][2] = "";
+
+$opt_responder["AutoIgnoreAfterSuccess"][0] = 0;
+$opt_responder["AutoIgnoreAfterSuccess"][1] = 12;
+$opt_responder["AutoIgnoreAfterSuccess"][2] = "";
+
+$opt_responder["CaptureMultipleCredentials"][0] = 1;
+$opt_responder["CaptureMultipleCredentials"][1] = 13;
+$opt_responder["CaptureMultipleCredentials"][2] = "";
 
 ?>
